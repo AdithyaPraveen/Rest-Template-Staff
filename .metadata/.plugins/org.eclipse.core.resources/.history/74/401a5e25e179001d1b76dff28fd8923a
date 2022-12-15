@@ -1,0 +1,5 @@
+package com.deloitte.customer.model;
+
+public class FailureResponse {
+
+}

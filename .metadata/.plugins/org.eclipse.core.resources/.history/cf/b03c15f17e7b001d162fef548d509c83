@@ -1,0 +1,13 @@
+package com.deloitte.investment;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class InvestmentMs2Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(InvestmentMs2Application.class, args);
+	}
+
+}

@@ -1,0 +1,9 @@
+package com.deloitte.customer.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.deloitte.customer.entity.Customer;
+
+public interface CustomerRepository extends JpaRepository<Customer,Integer>{
+
+}

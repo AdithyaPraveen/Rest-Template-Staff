@@ -1,0 +1,41 @@
+package com.deloitte.customer.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+import com.deloitte.customer.entity.Customer;
+import com.deloitte.customer.model.Response;
+import com.deloitte.customer.service.CustomerService;
+
+@RestController
+@RequestMapping("/customers")
+public class CustomerController {
+	@Autowired
+	private CustomerService customerService;
+	@Autowired
+	private RestTemplate restTemplate;
+	@GetMapping("/get/{id}")
+	public ResponseEntity<Customer> getCustomer(@PathVariable("id")Integer id)
+	{
+		Customer customer=customerService.getCustomer(id);
+		List ordersList=restTemplate.getForObject("http://localhost:8082/orders/getOrder/"+id,List.class);
+		Response response=new Response(customer,ordersList);
+		return new ResponseEntity<Response>(response,HttpStatus.OK);
+		
+	}
+	@GetMapping("/getAll")
+	public ResponseEntity<List<Customer>> getCustomers()
+	{
+		List<Customer> customerList= customerService.getCustomers();
+		return new ResponseEntity<List<Customer>>(customerList,HttpStatus.OK);
+		
+	}
+}

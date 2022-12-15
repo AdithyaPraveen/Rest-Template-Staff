@@ -1,0 +1,18 @@
+package com.deloitte.investment.service;
+
+import java.util.List;
+
+import com.deloitte.investment.entity.Investments;
+
+
+
+public interface InvestmentService {
+	
+	public List<Investments> getInvestById(Integer id);
+	public List<Investments> getInvestments();
+	public Investments addInvest(Investments invest);
+//	public Investments updateInvest(Investments invest,Integer id);
+	
+	public Investments getMutualFundById(Integer m_id);
+	
+}

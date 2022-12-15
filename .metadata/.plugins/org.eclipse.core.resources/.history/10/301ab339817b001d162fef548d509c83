@@ -1,0 +1,76 @@
+package com.deloitte.investment.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.deloitte.customer.entity.Customer;
+import com.deloitte.customer.model.FailureResponse;
+import com.deloitte.customer.model.Order;
+import com.deloitte.customer.model.Response;
+import com.deloitte.investment.dao.InvestmentRepo;
+import com.deloitte.investment.entity.Investments;
+import com.deloitte.investment.service.InvestmentService;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+
+
+
+
+@RestController
+@RequestMapping("/investments")
+public class InvestmentController {
+	@Autowired
+	private InvestmentRepo investmentrepo;
+	@GetMapping("/getInvestments")
+	@HystrixCommand(fallbackMethod = "mutualFailureFallback")
+	public ResponseEntity<List<Investments>> getInvestments(){
+		List<Investments> investmentList=investmentrepo.findAll();
+		return new ResponseEntity<List<Investments>> (investmentList,HttpStatus.OK);
+	}
+//	@GetMapping("/getInvestById/{s_id}")
+//	public ResponseEntity<List<Investments>> getInvestById(@PathVariable("s_id") Integer s_id){
+//		List<Investments> investmentList=investmentrepo.findByStaffid(s_id);
+//		return new ResponseEntity<List<Investments>> (investmentList,HttpStatus.OK);
+//	}
+	
+	public ResponseEntity<?> getInvestById(@PathVariable("id")Integer id)
+	{
+		Investments invest=InvestmentService.getInvestById(id);
+		
+	List<Order> ordersList=restTemplate.getForObject("http://localhost:8082/orders/getOrder/"+id,List.class);
+	List<Order> ordersList1=restTemplate.getForObject("http://localhost:8082/orders/getOrder/"+id,List.class);	
+	Response response=new Response(customer,ordersList,ordersList1);
+		return new ResponseEntity<Response>(response,HttpStatus.OK);
+		
+	}
+	
+	public ResponseEntity<?> orderFailureFallback(@PathVariable("id")Integer id)
+	{
+		Customer customer=customerService.getCustomer(id);
+		FailureResponse response=new FailureResponse(customer,"Currently Order Service is Down");
+		return new ResponseEntity<FailureResponse>(response,HttpStatus.OK);
+		
+	}
+	
+	
+	@PostMapping("/addInvest")
+	public Investments addInvest(@RequestBody Investments invest)
+	{
+		return investmentrepo.save(invest);
+	}
+//	@PutMapping("/updateInvest/{Id}")
+//	public Investments updateInvest(@RequestBody Investments invest,@PathVariable("Id") Integer id) 
+//	{
+//		return investmentrepo.updateInvest(invest,id);
+//	}
+
+}

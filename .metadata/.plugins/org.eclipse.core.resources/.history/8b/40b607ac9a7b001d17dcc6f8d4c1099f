@@ -1,0 +1,5 @@
+package com.deloitte.mutual.service;
+
+public interface MutualService {
+
+}

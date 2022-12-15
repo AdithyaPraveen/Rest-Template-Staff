@@ -1,0 +1,14 @@
+package com.deloitte.orders.dao;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.deloitte.orders.entity.Orders;
+
+public interface OrderRepository extends JpaRepository<Orders,Integer>{
+	
+	List<Orders> findByCid(Integer custid);
+	
+
+}

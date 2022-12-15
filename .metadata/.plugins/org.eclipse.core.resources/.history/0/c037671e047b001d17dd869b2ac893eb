@@ -1,0 +1,5 @@
+package com.deloitte.investment.controller;
+
+public class InvestmentController {
+
+}

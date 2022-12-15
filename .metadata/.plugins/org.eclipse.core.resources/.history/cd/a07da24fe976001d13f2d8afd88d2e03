@@ -1,0 +1,18 @@
+package com.deloitte.customer.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.deloitte.customer.entity.Customer;
+import com.deloitte.customer.service.CustomerService;
+
+@RestController
+public class CustomerController {
+	@Autowired
+	private CustomerService customerService;
+	public Customer getCustomer()
+	{
+		
+	}
+
+}

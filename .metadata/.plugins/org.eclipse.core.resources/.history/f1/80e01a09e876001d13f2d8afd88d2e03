@@ -1,0 +1,23 @@
+package com.deloitte.customer.service;
+
+import java.util.List;
+
+import com.deloitte.customer.dao.CustomerRepository;
+import com.deloitte.customer.entity.Customer;
+
+public class CustomerServiceImpl implements CustomerService {
+
+	private CustomerRepository customerRepository;
+	@Override
+	public Customer getCustomer(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Customer> getCustomers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

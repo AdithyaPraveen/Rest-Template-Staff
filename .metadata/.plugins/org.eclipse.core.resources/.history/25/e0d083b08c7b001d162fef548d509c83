@@ -1,0 +1,23 @@
+server.port=8880
+spring.application.name=API-Gateway
+
+spring.jpa.hibernate.ddl-auto=update
+spring.datasource.url=jdbc:mysql://localhost:3306/addb
+spring.datasource.username=root
+spring.datasource.password=root
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.jpa.show-sql=true
+spring.main.web-application-type=reactive
+
+spring.cloud.gateway.routes[0].id = STAFF-MS
+spring.cloud.gateway.routes[0].uri=http://localhost:8081/
+spring.cloud.gateway.routes[0].predicates[0]=Path=/staff/**
+
+spring.cloud.gateway.routes[1].id = INVESTMENT-MS
+spring.cloud.gateway.routes[1].uri=http://localhost:8082/
+spring.cloud.gateway.routes[1].predicates[0]=Path=/investments/**
+
+spring.cloud.gateway.routes[2].id = PROJECT-MS
+spring.cloud.gateway.routes[2].uri=http://localhost:8083/
+spring.cloud.gateway.routes[2].predicates[0]=Path=/projects/**
+

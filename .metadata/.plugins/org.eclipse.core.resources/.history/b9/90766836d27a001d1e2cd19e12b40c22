@@ -1,0 +1,13 @@
+package com.deloitte.staff;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class StaffMs1Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(StaffMs1Application.class, args);
+	}
+
+}

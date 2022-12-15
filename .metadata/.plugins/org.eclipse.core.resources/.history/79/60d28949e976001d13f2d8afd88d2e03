@@ -1,0 +1,29 @@
+package com.deloitte.customer.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.deloitte.customer.dao.CustomerRepository;
+import com.deloitte.customer.entity.Customer;
+
+@Service
+public class CustomerServiceImpl implements CustomerService {
+
+	@Autowired
+	private CustomerRepository customerRepository;
+	@Override
+	public Customer getCustomer(Integer id) {
+		
+		return customerRepository.findById(id).get();
+	}
+
+	@Override
+	public List<Customer> getCustomers() {
+		
+		return customerRepository.findAll();
+	}
+
+}

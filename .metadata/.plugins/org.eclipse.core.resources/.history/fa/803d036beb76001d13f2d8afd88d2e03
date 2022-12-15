@@ -1,0 +1,33 @@
+package com.deloitte.customer.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.deloitte.customer.entity.Customer;
+import com.deloitte.customer.service.CustomerService;
+
+@RestController
+public class CustomerController {
+	@Autowired
+	private CustomerService customerService;
+	@GetMapping("/get/{id}")
+	public ResponseEntity<Customer> getCustomer(@PathVariable("id")Integer id)
+	{
+		Customer customer=customerService.getCustomer(id);
+		return new ResponseEntity<Customer>(customer,HttpStatus.OK);
+		
+	}
+	@GetMapping("/getAll")
+	public ResponseEntity<List<Customer>> getCustomers()
+	{
+		List<Customer> customerList= customerService.getCustomers();
+		return new ResponseEntity<List<Customer>>(customerList,HttpStatus.OK);
+		
+	}
+}

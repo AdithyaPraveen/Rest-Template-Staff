@@ -1,0 +1,5 @@
+package com.deloitte.customer.entity;
+
+public class Customer {
+
+}

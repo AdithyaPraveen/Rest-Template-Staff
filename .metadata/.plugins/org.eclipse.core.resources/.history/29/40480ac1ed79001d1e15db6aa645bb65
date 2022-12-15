@@ -1,0 +1,8 @@
+
+server.port=8880
+spring.application.name=API-Gateway
+
+spring.cloud.gateway.routes[0].id = Customer-MS
+spring.cloud.gateway.routes[0].uri=http://localhost:8081/
+spring.cloud.gateway.routes[0].predicates[0]=Path=/customers/**
+

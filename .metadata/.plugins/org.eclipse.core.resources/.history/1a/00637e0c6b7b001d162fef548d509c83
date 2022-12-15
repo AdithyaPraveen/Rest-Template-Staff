@@ -1,0 +1,22 @@
+package com.deloitte.repository;
+
+import org.springframework.stereotype.Repository;
+
+import com.deloitte.model.Tutorial;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+
+
+@Repository
+public class TutorialRepository {
+
+	@PersistenceContext
+	private EntityManager entityManager;
+	
+	public Tutorial save(Tutorial tutorial)//user defined
+	{
+		entityManager.persist(tutorial);
+		return tutorial;
+	}
+}

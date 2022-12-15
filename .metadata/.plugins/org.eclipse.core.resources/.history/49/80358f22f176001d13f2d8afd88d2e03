@@ -1,0 +1,5 @@
+package com.deloitte.orders.entity;
+
+public class Orders {
+
+}

@@ -1,0 +1,9 @@
+package com.deloitte.project.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.deloitte.project.entity.Projects;
+
+public interface ProjectRepo extends JpaRepository<Projects,Integer> {
+
+}

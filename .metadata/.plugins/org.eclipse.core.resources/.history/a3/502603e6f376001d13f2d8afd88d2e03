@@ -1,0 +1,9 @@
+package com.deloitte.orders.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.deloitte.orders.entity.Orders;
+
+public interface OrderRepository extends JpaRepository<Orders,Integer>{
+
+}

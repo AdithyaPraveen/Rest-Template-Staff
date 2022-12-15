@@ -1,0 +1,5 @@
+package com.deloitte.staff.service;
+
+public class StaffServiceImpl {
+
+}

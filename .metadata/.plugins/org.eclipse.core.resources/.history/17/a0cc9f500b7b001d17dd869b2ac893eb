@@ -1,0 +1,5 @@
+package com.deloitte.investment.service;
+
+public interface InvestmentService {
+
+}

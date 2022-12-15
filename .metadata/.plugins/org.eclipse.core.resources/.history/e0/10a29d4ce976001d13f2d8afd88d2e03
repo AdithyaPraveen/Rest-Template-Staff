@@ -1,0 +1,13 @@
+package com.deloitte.customer.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import com.deloitte.customer.entity.Customer;
+
+public interface CustomerService {
+	
+	public Customer getCustomer(Integer id);
+	public List<Customer> getCustomers();
+
+}
